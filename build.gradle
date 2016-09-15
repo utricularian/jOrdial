@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'jOrdial'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile('com.google.guava:guava:11.0.2')
+    compile group: 'com.google.guava', name: 'guava-testlib', version: '11.0.1'
+
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.github.javafaker:javafaker:0.10')
+    testCompile('org.assertj:assertj-core:3.5.2')
+
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut"
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+
+    }
+}
